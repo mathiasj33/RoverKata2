@@ -1,13 +1,18 @@
 package de.rmkata.roverkata2.test;
 
-import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.doReturn;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.never;
+import static org.mockito.Mockito.spy;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
 import de.rmkata.roverkata2.code.Direction;
-import de.rmkata.roverkata2.code.Direction.NESW;
 import de.rmkata.roverkata2.code.Obstacle;
 import de.rmkata.roverkata2.code.Planet;
 import de.rmkata.roverkata2.code.Pos;
@@ -24,7 +29,7 @@ public class TestRover {
 	public void setUp() throws Exception {
 		mars = new Planet("Mars",100,100);
 		dir = new Direction(Direction.NESW.NORTH);
-		pos = new Pos(0,0);  //Es muss Pos heiﬂen, da schon eine andere Java Klasse Position heiﬂt
+		pos = new Pos(0,0);
 	}
 	
 	@Test
