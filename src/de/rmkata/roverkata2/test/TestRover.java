@@ -13,6 +13,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import de.rmkata.roverkata2.code.Direction;
+import de.rmkata.roverkata2.code.Direction.NESW;
 import de.rmkata.roverkata2.code.Obstacle;
 import de.rmkata.roverkata2.code.Planet;
 import de.rmkata.roverkata2.code.Pos;
@@ -79,5 +80,33 @@ public class TestRover {
 		Assert.assertEquals(new Pos(1,0), rover.getPos());
 	}
 
+	@Test
+	public void testDoCommand_l() {
 	
+		Planet mockVenus = mock(Planet.class);
+		Direction mockDir = mock(Direction.class);
+		Direction dirLeft = new Direction(NESW.WEST);
+		when(mockDir.getDirectionToTheLeft()).thenReturn(dirLeft);
+
+		rover = new Rover(mockVenus,pos,mockDir);
+		
+		rover.doCommand('l');
+		Assert.assertEquals(dirLeft, rover.getDir());
+	}
+
+
+	@Test
+	public void testDoCommand_r() {
+	
+		Planet mockVenus = mock(Planet.class);
+		Direction mockDir = mock(Direction.class);
+		Direction dirRight = new Direction(NESW.EAST);
+		when(mockDir.getDirectionToTheRight()).thenReturn(dirRight);
+
+		rover = new Rover(mockVenus,pos,mockDir);
+		
+		rover.doCommand('r');
+		Assert.assertEquals(dirRight, rover.getDir());
+	}
+
 }

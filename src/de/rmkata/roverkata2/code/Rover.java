@@ -26,11 +26,15 @@ public class Rover {
 	}
 	
 	public Obstacle doCommand(Character c) {
-		if(c.equals('f')) {
+		switch (c) {
+		case 'f':
 			pos = planet.getPositionAfterOneStepForward(pos, dir);
-		}
-		else if(c.equals('b')) {
+			break;
+		case 'b':
 			pos = planet.getPositionAfterOneStepForward(pos, dir.getOppositeDirection());
+			break;
+		default:
+			break;
 		}
 		return null;
 	}

@@ -28,4 +28,42 @@ public class Direction {
 		return null;
 	}
 
+	
+	public String toString() {
+		switch (getNesw()) {
+		case NORTH:
+			return "NORTH";
+		case SOUTH:
+			return "SOUTH";
+		case EAST:
+			return "EAST";
+		case WEST:
+			return "WEST";
+		}
+		return "NOT DEFINED";
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((nesw == null) ? 0 : nesw.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Direction other = (Direction) obj;
+		if (nesw != other.nesw)
+			return false;
+		return true;
+	}
+
+
 }
