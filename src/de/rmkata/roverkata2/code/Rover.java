@@ -33,6 +33,12 @@ public class Rover {
 		case 'b':
 			pos = planet.getPositionAfterOneStepForward(pos, dir.getOppositeDirection());
 			break;
+		case 'l':
+			dir = dir.getDirectionToTheLeft();
+			break;
+		case 'r': 
+			dir = dir.getDirectionToTheRight();
+			break;
 		default:
 			break;
 		}

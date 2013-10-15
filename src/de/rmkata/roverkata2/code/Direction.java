@@ -64,6 +64,14 @@ public class Direction {
 			return false;
 		return true;
 	}
+	
+	public Direction getDirectionToTheLeft() {
+		return null;
+	}
+	
+	public Direction getDirectionToTheRight() {
+		return null;
+	}
 
 
 }
