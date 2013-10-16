@@ -79,7 +79,22 @@ public class TestRover {
 		Assert.assertEquals(new Pos(0,0), rover.getPos());
 		Assert.assertNotNull(obstacle);
 	}
+
+	@Test
+	public void testDoCommand_b_with_obstacle() {
 	
+		Planet mockVenus = mock(Planet.class);
+		Direction mockDir = mock(Direction.class);
+		when(mockVenus.getPositionAfterOneStepForward(pos,mockDir)).thenReturn(new Pos(49,0));
+		when(mockVenus.obstacleAt(new Pos(49,0))).thenReturn(new Obstacle(new Pos(49,0)));
+
+		rover = new Rover(mockVenus,pos,mockDir);
+		
+		Obstacle obstacle = rover.doCommand('b');
+		Assert.assertEquals(new Pos(0,0), rover.getPos());
+		Assert.assertNotNull(obstacle);
+	}
+
 
 	@Test
 	public void testDoCommand_b() {
