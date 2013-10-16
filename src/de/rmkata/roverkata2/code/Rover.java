@@ -28,7 +28,11 @@ public class Rover {
 	public Obstacle doCommand(Character c) {
 		switch (c) {
 		case 'f':
-			pos = planet.getPositionAfterOneStepForward(pos, dir);
+			Pos tryPos = planet.getPositionAfterOneStepForward(pos, dir);
+			if(planet.obstacleAt(tryPos) != null) {
+				return planet.obstacleAt(tryPos);
+			}
+			pos = tryPos;
 			break;
 		case 'b':
 			pos = planet.getPositionAfterOneStepForward(pos, dir.getOppositeDirection());
