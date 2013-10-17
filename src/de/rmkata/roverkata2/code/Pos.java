@@ -55,5 +55,9 @@ public class Pos {
 		return "(" + x +";"+y+")";
 	}
 	
+	public Pos addModulo(Pos start, int w, int h) {
+		return null;
+	}
+	
 	
 }

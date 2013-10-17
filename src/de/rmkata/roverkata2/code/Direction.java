@@ -72,6 +72,10 @@ public class Direction {
 	public Direction getDirectionToTheRight() {
 		return null;
 	}
+	
+	public Pos getVector() {
+		return null;
+	}
 
 
 }

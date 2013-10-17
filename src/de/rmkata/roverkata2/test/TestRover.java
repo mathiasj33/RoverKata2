@@ -85,7 +85,7 @@ public class TestRover {
 	
 		Planet mockVenus = mock(Planet.class);
 		Direction mockDir = mock(Direction.class);
-		when(mockVenus.getPositionAfterOneStepForward(pos,mockDir)).thenReturn(new Pos(49,0));
+		when(mockVenus.getPositionAfterOneStepForward(pos,mockDir.getOppositeDirection())).thenReturn(new Pos(49,0));
 		when(mockVenus.obstacleAt(new Pos(49,0))).thenReturn(new Obstacle(new Pos(49,0)));
 
 		rover = new Rover(mockVenus,pos,mockDir);
