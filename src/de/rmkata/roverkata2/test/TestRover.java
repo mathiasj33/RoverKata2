@@ -139,5 +139,29 @@ public class TestRover {
 		rover.doCommand('r');
 		Assert.assertEquals(dirRight, rover.getDir());
 	}
+	
+	@Test
+	public void testMoveWithCollaboratorClasses() {
+		Planet pluto = new Planet("Pluto", 2, 3);
+		pluto.addObstacle(new Pos(0,0));
+		Rover plutoRover = new Rover(pluto,new Pos(1,1),new Direction(NESW.NORTH));
+		//
+		//   o o
+		//   o r
+		//   x o
+		//
+		Obstacle obstacle = plutoRover.move("fff");
+		Assert.assertNull(obstacle);
+		Assert.assertEquals(plutoRover.getPos(), new Pos(1,1));
+		
+		obstacle = plutoRover.move("brf");
+		Assert.assertNotNull(obstacle);
+		Assert.assertEquals(plutoRover.getPos(), new Pos(1,0));
+		
+		obstacle = plutoRover.move("lfflb");
+		Assert.assertNull(obstacle);
+		Assert.assertEquals(plutoRover.getPos(), new Pos(0,2));
+	}
+	
 
 }

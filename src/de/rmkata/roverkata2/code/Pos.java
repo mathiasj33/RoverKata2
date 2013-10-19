@@ -4,6 +4,10 @@ public class Pos {
 	private int x;
 	private int y;
 	
+	private void log(String s){
+		System.out.println(s);
+	}
+	
 	public Pos(int x, int y) {
 		super();
 		setX(x);
@@ -58,8 +62,9 @@ public class Pos {
 	public Pos addModulo(Pos start, int w, int h) {
 		x += start.getX();
 		y += start.getY();
-		x = (w % x + x) % w;
-		y = (h % y + y) % h;
+		log(this.toString()+".addModulo("+start+","+w+","+h+") --> x="+x+", y="+y+";");
+		x = (x % w + w) % w;
+		y = (y % h + h) % h;
 		return new Pos(x, y);
 	}
 	
