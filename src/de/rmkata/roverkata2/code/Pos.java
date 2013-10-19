@@ -56,7 +56,11 @@ public class Pos {
 	}
 	
 	public Pos addModulo(Pos start, int w, int h) {
-		return null;
+		x += start.getX();
+		y += start.getY();
+		x = (w % x + x) % w;
+		y = (h % y + y) % h;
+		return new Pos(x, y);
 	}
 	
 	

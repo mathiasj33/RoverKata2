@@ -2,7 +2,7 @@ package de.rmkata.roverkata2.code;
 
 public class Direction {
 	
-	private NESW nesw = null;
+	private NESW nesw;
 	
 	public Direction(NESW nesw) {
 		setNesw(nesw);
@@ -24,8 +24,7 @@ public class Direction {
 	}
 
 	public Direction getOppositeDirection() {
-		// TODO Auto-generated method stub
-		return null;
+		return new Direction(getDirectionToTheRight().getDirectionToTheRight().getNesw());
 	}
 
 	
@@ -66,14 +65,22 @@ public class Direction {
 	}
 	
 	public Direction getDirectionToTheLeft() {
-		return null;
+		return new Direction(getDirectionToTheRight().getDirectionToTheRight().getDirectionToTheRight().getNesw());  //3 mal rechts ist auch nach links
 	}
 	
 	public Direction getDirectionToTheRight() {
+		if(nesw == NESW.NORTH) return new Direction(NESW.EAST);
+		else if(nesw == NESW.EAST) return new Direction(NESW.SOUTH);
+		else if(nesw == NESW.SOUTH) return new Direction(NESW.WEST);
+		else if(nesw == NESW.WEST) return new Direction(NESW.NORTH);
 		return null;
 	}
 	
 	public Pos getVector() {
+		if(nesw == NESW.NORTH) return new Pos(0,1);
+		else if(nesw == NESW.EAST) return new Pos(1,0);
+		else if(nesw == NESW.SOUTH) return new Pos(0,-1);
+		else if(nesw == NESW.WEST) return new Pos(-1,0);
 		return null;
 	}
 
