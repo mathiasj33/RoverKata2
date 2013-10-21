@@ -29,6 +29,16 @@ public class TestPos {
 		Assert.assertEquals(10, newPos.getX());
 		Assert.assertEquals(0, newPos.getY());
 	}
+	
+	@Test
+	public final void testAddModuloLeaveThisUnchanged() {
+		Pos summand1 = new Pos(0,0);
+		Pos summand2 = new Pos(1,0);
+		Pos summe = summand1.addModulo(summand2, 3, 3);
+		Assert.assertEquals(new Pos(1, 0), summe);
+		Assert.assertEquals(new Pos(0,0), summand1);
+		
+	}
 
 
 }

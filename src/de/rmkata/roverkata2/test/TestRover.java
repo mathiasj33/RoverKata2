@@ -156,7 +156,7 @@ public class TestRover {
 		
 		obstacle = plutoRover.move("brf");
 		Assert.assertNotNull(obstacle);
-		Assert.assertEquals(plutoRover.getPos(), new Pos(1,0));
+		Assert.assertEquals(new Pos(1,0), plutoRover.getPos());
 		
 		obstacle = plutoRover.move("lfflb");
 		Assert.assertNull(obstacle);

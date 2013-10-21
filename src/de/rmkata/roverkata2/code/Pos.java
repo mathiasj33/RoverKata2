@@ -5,7 +5,7 @@ public class Pos {
 	private int y;
 	
 	private void log(String s){
-		System.out.println(s);
+	//	System.out.println(s);
 	}
 	
 	public Pos(int x, int y) {
@@ -59,12 +59,14 @@ public class Pos {
 		return "(" + x +";"+y+")";
 	}
 	
-	public Pos addModulo(Pos start, int w, int h) {
-		x += start.getX();
-		y += start.getY();
-		log(this.toString()+".addModulo("+start+","+w+","+h+") --> x="+x+", y="+y+";");
+	public Pos addModulo(Pos dirVector, int w, int h) {
+					log(this.toString()+".addModulo("+dirVector+","+w+","+h+") ");
+		x += dirVector.getX();
+		y += dirVector.getY();
+					log("--> x="+x+", y="+y+";");
 		x = (x % w + w) % w;
 		y = (y % h + h) % h;
+					log("this:="+this.toString());
 		return new Pos(x, y);
 	}
 	
