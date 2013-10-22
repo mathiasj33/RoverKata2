@@ -1,13 +1,13 @@
 package de.rmkata.roverkata2.code;
 
-import java.util.ArrayList;
+import java.util.Hashtable;
 
 public class Planet {
 	
 	private String name;
 	private int height;
 	private int width;
-	private ArrayList<Obstacle> obstacles = new ArrayList<Obstacle>();
+	private Hashtable<Pos,Obstacle> obstacles = new Hashtable<Pos,Obstacle>();
 	
 	public Planet(String name, int w, int h) {
 		this.name = name;
@@ -19,15 +19,24 @@ public class Planet {
 		return pos.addModulo(dir.getVector(), width, height);
 	}
 
-	public Obstacle obstacleAt(Pos newPos) {
-		for(Obstacle o:obstacles) {
-			if(o.getPos().equals(newPos)) {
-				return o;
-			}
-		}
-		return null;
+	public void addObstacle(Pos p) {
+		obstacles.put(p,new Obstacle(p));
 	}
 	
+	public int getHeight() {
+		return height;
+	}
+	
+	public int getWidth() {
+		return width;
+	}
+	
+
+	public Obstacle obstacleAt(Pos p) {
+		return obstacles.get(p); 
+	}
+
+
 	public int getH() {
 		return height;
 	}
@@ -40,8 +49,5 @@ public class Planet {
 		return name;
 	}
 
-	public void addObstacle(Pos pos) {
-		obstacles.add(new Obstacle(pos));
-	}
 
 }

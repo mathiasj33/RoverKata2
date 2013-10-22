@@ -6,10 +6,6 @@ public class Rover {
 	private Planet planet;
 	private Direction dir;
 	
-	private void log(String s){
-	//	System.out.println(s);
-	}
-
 	public Rover(Planet planet, Pos pos, Direction dir) {
 		setPlanet(planet);
 		setPos(pos);
@@ -30,32 +26,21 @@ public class Rover {
 	}
 	
 	public Obstacle doCommand(Character c) {
+		Direction dirLocal = (c=='f') ? dir : dir.getOppositeDirection();
 		switch (c) {
 		case 'f':
-						log("f->planet.getPositionAfterOneStepForward("+pos+", "+dir+");");
-			Pos pos1 = planet.getPositionAfterOneStepForward(pos, dir);
-						log("   ==> "+pos1);
+		case 'b':
+			Pos pos1 = planet.getPositionAfterOneStepForward(pos, dirLocal);
 			if(planet.obstacleAt(pos1) != null) {
 				return planet.obstacleAt(pos1);
 			}
 			pos = pos1;
-			break;
-		case 'b':
-						log("b->planet.getPositionAfterOneStepForward("+pos+", "+dir.getOppositeDirection()+");");
-			Pos pos2 = planet.getPositionAfterOneStepForward(pos, dir.getOppositeDirection());
-						log("    ==> "+pos2);
-			if(planet.obstacleAt(pos2) != null) {
-				return planet.obstacleAt(pos2);
-			}
-			pos = pos2;
 			break;
 		case 'l':
 			dir = dir.getDirectionToTheLeft();
 			break;
 		case 'r': 
 			dir = dir.getDirectionToTheRight();
-			break;
-		default:
 			break;
 		}
 		return null;

@@ -1,5 +1,6 @@
 package de.rmkata.roverkata2.code;
 
+
 public class Direction {
 	
 	private NESW nesw;
@@ -17,10 +18,41 @@ public class Direction {
 	}
 
 	public enum NESW {
-		NORTH,
-		EAST,
-		SOUTH,
-		WEST
+		NORTH(0,new String("NORTH"),new Pos(0,1)), EAST(1,new String("EAST"),new Pos(1,0)),
+		SOUTH(2,new String("SOUTH"),new Pos(0,-1)), WEST(3,new String("WEST"),new Pos(-1,0));
+		private int index;
+		private String name;
+		private Pos vector;
+		
+		NESW(int index, String name, Pos vector) {
+			this.index = index;
+			this.name = name;
+			this.vector = vector;
+		}
+
+		int getIndex() {
+			return index;
+		}
+
+		String getName() {
+			return name;
+		}
+
+		Pos getVector() {
+			return vector;
+		}
+		
+		static NESW getNESW(int index) {
+		      for (NESW nesw : NESW.values()) {
+		          if (nesw.index == index) return nesw;
+		      }
+		      throw new IllegalArgumentException("Diese Richtung gibts nicht.");
+		}
+		
+		NESW getNESWToTheRight() {
+			return getNESW((this.getIndex()+1)%4);
+		}
+
 	}
 
 	public Direction getOppositeDirection() {
@@ -29,17 +61,7 @@ public class Direction {
 
 	
 	public String toString() {
-		switch (getNesw()) {
-		case NORTH:
-			return "NORTH";
-		case SOUTH:
-			return "SOUTH";
-		case EAST:
-			return "EAST";
-		case WEST:
-			return "WEST";
-		}
-		return "NOT DEFINED";
+		return getNesw().getName();
 	}
 
 	@Override
@@ -69,19 +91,11 @@ public class Direction {
 	}
 	
 	public Direction getDirectionToTheRight() {
-		if(nesw == NESW.NORTH) return new Direction(NESW.EAST);
-		else if(nesw == NESW.EAST) return new Direction(NESW.SOUTH);
-		else if(nesw == NESW.SOUTH) return new Direction(NESW.WEST);
-		else if(nesw == NESW.WEST) return new Direction(NESW.NORTH);
-		return null;
+		return new Direction(this.getNesw().getNESWToTheRight());
 	}
 	
 	public Pos getVector() {
-		if(nesw == NESW.NORTH) return new Pos(0,1);
-		else if(nesw == NESW.EAST) return new Pos(1,0);
-		else if(nesw == NESW.SOUTH) return new Pos(0,-1);
-		else if(nesw == NESW.WEST) return new Pos(-1,0);
-		return null;
+		return getNesw().getVector();
 	}
 
 

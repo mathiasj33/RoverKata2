@@ -4,10 +4,6 @@ public class Pos {
 	private int x;
 	private int y;
 	
-	private void log(String s){
-	//	System.out.println(s);
-	}
-	
 	public Pos(int x, int y) {
 		super();
 		setX(x);
@@ -60,17 +56,9 @@ public class Pos {
 	}
 	
 	public Pos addModulo(Pos dirVector, int w, int h) {
-					log(this.toString()+".addModulo("+dirVector+","+w+","+h+") ");
-		int x2 = x;
-		int y2 = y;
-		x2 += dirVector.getX();
-		y2 += dirVector.getY();
-					log("--> x="+x+", y="+y+";");
-		x2 = (x2 % w + w) % w;
-		y2 = (y2 % h + h) % h;
-					log("this:="+this.toString());
-		return new Pos(x2, y2);
+		return new Pos( ((getX()+dirVector.getX())% w + w) % w,
+						((getY()+dirVector.getY())% h + h) % h);
 	}
-	
+
 	
 }
