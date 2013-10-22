@@ -61,13 +61,15 @@ public class Pos {
 	
 	public Pos addModulo(Pos dirVector, int w, int h) {
 					log(this.toString()+".addModulo("+dirVector+","+w+","+h+") ");
-		x += dirVector.getX();
-		y += dirVector.getY();
+		int x2 = x;
+		int y2 = y;
+		x2 += dirVector.getX();
+		y2 += dirVector.getY();
 					log("--> x="+x+", y="+y+";");
-		x = (x % w + w) % w;
-		y = (y % h + h) % h;
+		x2 = (x2 % w + w) % w;
+		y2 = (y2 % h + h) % h;
 					log("this:="+this.toString());
-		return new Pos(x, y);
+		return new Pos(x2, y2);
 	}
 	
 	
